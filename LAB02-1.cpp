@@ -8,8 +8,8 @@ int main()
 {
 	double alpha, beta;
 
-	Mat original, processing; // Matº¯¼ö ¼±¾ğ
-	original = imread("seoul.png", IMREAD_GRAYSCALE); //ÀÏ¹İ °ªÀ¸·Î ÀĞ¾î¿À±â
+	Mat original, processing; // Matë³€ìˆ˜ ì„ ì–¸
+	original = imread("seoul.png", IMREAD_GRAYSCALE); //ì¼ë°˜ ê°’ìœ¼ë¡œ ì½ì–´ì˜¤ê¸°
 	if (original.empty())
 	{
 		cout << "Could not open or find the image" << endl;
@@ -18,12 +18,12 @@ int main()
 
 	cin >> alpha >> beta;
 
-	namedWindow("original", WINDOW_AUTOSIZE); //À©µµ¿ì ¸í
+	namedWindow("original", WINDOW_AUTOSIZE); //ìœˆë„ìš° ëª…
 	imshow("original", original);
 
 	processing = alpha * original + beta;
 	namedWindow("processing", WINDOW_AUTOSIZE);
-	imshow("processing", processing); //ÇØ´ç ÀÌ¸§À» °¡Áø À©µµ¿ì¿¡ ÀÌ¹ÌÁö ºÒ·¯¿À±â
+	imshow("processing", processing); //í•´ë‹¹ ì´ë¦„ì„ ê°€ì§„ ìœˆë„ìš°ì— ì´ë¯¸ì§€ ë¶ˆëŸ¬ì˜¤ê¸°
 
-	waitKey(0); //Å° ÀÎÇ²ÀÌ µé¾î¿Ã ¶§±îÁö ±â´Ù¸°´Ù.
+	waitKey(0); //í‚¤ ì¸í’‹ì´ ë“¤ì–´ì˜¬ ë•Œê¹Œì§€ ê¸°ë‹¤ë¦°ë‹¤.
 }

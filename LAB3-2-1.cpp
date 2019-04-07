@@ -1,7 +1,7 @@
 ///////////////////////////////////////
 /**********Convolution***********/
 //////////////////////////////////////
-/*#include <opencv2/opencv.hpp>
+#include <opencv2/opencv.hpp>
 #include <iostream>
 #include<math.h>
 #include<algorithm>
@@ -12,11 +12,9 @@ void Convolution(Mat input, Mat kernel, Mat& result) {
 	float sum = 0;
 	for (int i = 1; i < input.rows - 1; i++) {
 		for (int j = 1; j < input.cols - 1; j++) {
-			for (int k = -1; k <= 1; k++) {
-				for (int l = -1; l <= 1; l++) {
-					int nx = i + k;
-					int ny = j + k;
-					sum += input.at<float>(nx, ny) * kernel.at<float>(k + 1, l + 1);
+			for (int k = 0; k < 3; k++) {
+				for (int l = 0; l < 3; l++) {
+					sum += input.at<float>(i + k - 1, j + l - 1) * kernel.at<float>(k, l);
 				}
 			}
 			sum /= (3 * 3);
@@ -26,7 +24,7 @@ void Convolution(Mat input, Mat kernel, Mat& result) {
 }
 int main()
 {
-	Mat input,conInput;
+	Mat input, conInput;
 	input = imread("city.jpg", IMREAD_GRAYSCALE);
 	if (input.empty())
 	{
@@ -45,8 +43,9 @@ int main()
 	Mat conv_result = Mat(conInput.size(), conInput.type());
 
 	Convolution(conInput, blur, conv_result);
+
 	namedWindow("convolution result", WINDOW_AUTOSIZE);
 	imshow("convolution result", conv_result);
 
 	waitKey(0); //키 인풋이 들어올 때까지 기다린다.
-}*/
+}

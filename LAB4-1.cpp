@@ -18,7 +18,6 @@ int main()
 		return -1;
 	}
 	Mat bayer_img = Mat::zeros(sensor_img.size(), CV_8UC3);
-	Mat color_img = Mat::zeros(sensor_img.size(), CV_8UC3);
 
 	//bayer img
 	for (int r = 0; r < sensor_img.rows; r += 2) {
@@ -41,6 +40,8 @@ int main()
 
 	namedWindow("origin", WINDOW_AUTOSIZE); //윈도우 명
 	imshow("origin", bayer_img);
+	Mat color_img = Mat(bayer_img.size(), bayer_img.type());
+	color_img = bayer_img;
 
 	//color img
 	for (int r = 0; r < bayer_img.rows; r += 2) {
@@ -65,6 +66,7 @@ int main()
 			}
 			color_img.at<Vec3b>(r, c)[1] = (uchar)(gsum / (4 - g_cnt));
 			color_img.at<Vec3b>(r, c)[0] = (uchar)(bsum / (4 - b_cnt));
+			//color_img.at<Vec3b>(r, c)[2] = bayer_img.at<Vec3b>(r, c)[2];
 		} //R에 G,B 넣기
 
 		for (int c = 1; c < bayer_img.cols; c += 2) {
@@ -89,7 +91,7 @@ int main()
 			//printf("%d %d\n", rsum, bsum);
 			color_img.at<Vec3b>(r, c)[2] = rsum / (2 - r_cnt);
 			color_img.at<Vec3b>(r, c)[0] = bsum / (2 - b_cnt);
-
+			//color_img.at<Vec3b>(r, c)[1] = bayer_img.at<Vec3b>(r, c)[1];
 		} //G에 R,B 넣기
 	} //홀
 
@@ -115,6 +117,7 @@ int main()
 			}
 			color_img.at<Vec3b>(r, c)[2] = rsum / (2 - r_cnt);
 			color_img.at<Vec3b>(r, c)[0] = bsum / (2 - b_cnt);
+			//color_img.at<Vec3b>(r, c)[1] = bayer_img.at<Vec3b>(r, c)[1];
 		} //G
 		for (int c = 1; c < bayer_img.cols; c += 2) {
 			int g_cnt = 0.0, r_cnt = 0.0;
@@ -138,6 +141,7 @@ int main()
 			}
 			color_img.at<Vec3b>(r, c)[1] = gsum / (4 - g_cnt);
 			color_img.at<Vec3b>(r, c)[2] = (rsum / 4 - r_cnt);
+			//color_img.at<Vec3b>(r, c)[0] = bayer_img.at<Vec3b>(r, c)[0];
 		} //B에 G,R넣기
 
 	} //짝

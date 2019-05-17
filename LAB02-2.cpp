@@ -3,15 +3,14 @@
 
 using namespace cv;
 using namespace std;
-using namespace cv;
 
 int main()
 {
 	double alpha, beta, gamma=0.0;
 
-	Mat img1, img2, dst; // Matº¯¼ö ¼±¾ğ
-	img1 = imread("seoul.png", IMREAD_GRAYSCALE); //ÀÏ¹İ °ªÀ¸·Î ÀĞ¾î¿À±â
-	img2 = imread("bird.png", IMREAD_GRAYSCALE); //ÀÏ¹İ °ªÀ¸·Î ÀĞ¾î¿À±â
+	Mat img1, img2, dst; // Matë³€ìˆ˜ ì„ ì–¸
+	img1 = imread("seoul.png", IMREAD_GRAYSCALE); //ì¼ë°˜ ê°’ìœ¼ë¡œ ì½ì–´ì˜¤ê¸°
+	img2 = imread("bird.png", IMREAD_GRAYSCALE); //ì¼ë°˜ ê°’ìœ¼ë¡œ ì½ì–´ì˜¤ê¸°
 
 	if (img1.empty() || img2.empty())
 	{
@@ -24,15 +23,15 @@ int main()
 
 	addWeighted(img1, alpha, img2, beta, gamma, dst);
 
-	namedWindow("img1", WINDOW_AUTOSIZE); //À©µµ¿ì ¸í
+	namedWindow("img1", WINDOW_AUTOSIZE); //ìœˆë„ìš° ëª…
 	imshow("img1", img1);
 
-	namedWindow("img2", WINDOW_AUTOSIZE); //À©µµ¿ì ¸í
+	namedWindow("img2", WINDOW_AUTOSIZE); //ìœˆë„ìš° ëª…
 	imshow("img2", img2);
 
-	namedWindow("blending", WINDOW_AUTOSIZE); //À©µµ¿ì ¸í
+	namedWindow("blending", WINDOW_AUTOSIZE); //ìœˆë„ìš° ëª…
 	imshow("blending", dst);
 
 	
-	waitKey(0); //Å° ÀÎÇ²ÀÌ µé¾î¿Ã ¶§±îÁö ±â´Ù¸°´Ù.
+	waitKey(0); //í‚¤ ì¸í’‹ì´ ë“¤ì–´ì˜¬ ë•Œê¹Œì§€ ê¸°ë‹¤ë¦°ë‹¤.
 }

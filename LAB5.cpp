@@ -20,7 +20,7 @@ Mat mm_scaling(Mat src, int zoom)
 	return dst;
 }
 
-// 중심점 기준으로 rotation만들기
+// rotation: based center of image
 Mat mm_rotation(Mat src, float angle)
 {
 	Mat dst = Mat::zeros(src.size(), src.type());
